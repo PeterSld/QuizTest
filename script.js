@@ -637,19 +637,18 @@ first.• Car with higher speed• Red car• Yellow car• The car that arrives
 497.From the picture, if you want to drive straight How should you be careful and act?• Turn on the emergency lights and drive past with speed.• Continue driving at the same speed.• Slow down and give way to cars turning away.• Honk the horn to make the car in front accelerate.
 `;
 function splitStringByRegexToObject(str, regex) {
-    const result = {};
-    const matches = str.split(regex);
-    console.log(matches)
-    for (let i = 0; i < matches.length - 1; i++) {
-        const key = matches[i].match(regex);
-        const value = matches[i + 1];
-        result[key] = value;
+    const result = [];
+    const matches = str.split(regex);    
+    for (let i = 0; i < matches.length; i++) {
+        const value = matches[i];
+        matches[i] = i + value + "|";
+        result[i] = matches[i].replace(/•/g, "|");
     }
-    
-    return matches;
+    return result;
 }
 const text = splitStringByRegexToObject(whole_doc, /\d+\./);
-text.join("<br />")
+console.log(text);
+let br = document.createElement("br")
 let div = document.getElementById("main");
 for (let i = 0; i < text.length; i++){
     div.append(text[i]);
