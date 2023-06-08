@@ -651,5 +651,6 @@ function splitStringByRegexToObject(str, regex) {
 const text = splitStringByRegexToObject(whole_doc, /\d+\./);
 text.join("<br />")
 let div = document.getElementById("main");
-let p = document.createElement("p");
-div.append(text);
+for (let i = 0; i < text.length; i++){
+    div.append(text[i]);
+}
