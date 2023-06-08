@@ -638,18 +638,18 @@ first.• Car with higher speed• Red car• Yellow car• The car that arrives
 `;
 function splitStringByRegexToObject(str, regex) {
     const result = [];
-    const matches = str.split(regex);    
+    const matches = str.split(regex);
+    let final = ""; 
     for (let i = 0; i < matches.length; i++) {
         const value = matches[i];
-        matches[i] = i + value + "|";
+        matches[i] = i + " | " + value + "<br>";
         result[i] = matches[i].replace(/•/g, "|");
     }
-    return result;
+    result[0] = "";
+    final = result.join("");
+    return final;
 }
 const text = splitStringByRegexToObject(whole_doc, /\d+\./);
 console.log(text);
-let br = document.createElement("br")
 let div = document.getElementById("main");
-for (let i = 0; i < text.length; i++){
-    div.append(text[i]);
-}
+div.innerHTML = text;
